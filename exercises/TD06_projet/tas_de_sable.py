@@ -5,6 +5,7 @@
 
 
 import tkinter as tk
+import random as rd
 
 
 ##############
@@ -22,33 +23,29 @@ N = 3
 #######################
 
 Liste=[]
-
+GRILLE = []
 
 #####################
 ##Fonctions##########
 #####################
 
-def init_terrain():
-    """Initialiser le terrain:
-    * initialiser la liste carrée terrain à 2D de taille N telle
-    que la case de coordonnées (i,j) vaut 1 si il y a un mur
-    dessus et 0 sinon
-    * initialiser la liste carrée grille à 2D de taille N
-    telle que la case de coordonnées (i,j) contient l'identifiant
-    du carré dessiné sur le canevas 
-    * Une case est un mur avec probabilité P
-    """
-    grille = []
-    for i in range(N):
-        grille.append([0]*N)
-        
-        
-    canvas.create_text(250,250,text=grille,fill="white")
-    
+def carre_canvas(x,y,rayon=5,couleur='blue'):
+    liste_canvas = canvas.create_rectangle(x-rayon,y-rayon,x+rayon,y+rayon,fill=couleur)
 
-
-    
-
+def generation():
+    canvas.delete('all')
+    config_courante = []
+    for i in range(GRILLE):
+        config_courante.append([])
+        for j in range(GRILLE):
+            config_courante[i].append(rd.randint(0,9))
+    espacement = HAUTEUR / GRILLE
+    for x in range(GRILLE):
+        for y in range(GRILLE):
+            if config_courante[x][y] < 4:
+                carre_canvas(espacement / 2 + x * espacement, espacement / 2 + y*espacement)
+            else:
+                carre_canvas(espacement / 2 + x * espacement, espacement / 2 + y*espacement,couleur='red')
 
 
 ########################
@@ -63,12 +60,11 @@ racine.title("tas de sable")
 canvas = tk.Canvas(racine, bg="black", height=HAUTEUR, width=LARGEUR)
 canvas.grid()
 
-bouton1= tk.Button(racine, text="créer la config aléatoire", font = ("helvetica", "30"),command=init_terrain)
+bouton1= tk.Button(racine, text="créer la config aléatoire", font = ("helvetica", "30"),command=generation)
 bouton1.grid()
 
 
 
-init_terrain()
 
 racine.mainloop()
 
