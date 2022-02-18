@@ -1,33 +1,37 @@
 
-###################
-##import libraire##
-###################
+#############################################
+# groupe 1
+# Ilerioluwa OLAYODE
+# Aymeric GOUDOUT
+# Sam BARBOSA
+# https://github.com/ilrx/Projet_tas_de_sable
+#############################################
 
+######################
+#Import des librairies
+######################
 
 import tkinter as tk
 import random as rd
 
+##########################
+#Définition des constantes
+##########################
 
-##############
-##Constantes##
-##############
+HAUTEUR = 800
+LARGEUR = 800
+GRILLE = 10
 
+##################################
+#Définition des variables globales
+##################################
 
-HAUTEUR = 500
-LARGEUR = 500
-N = 3
+liste_canvas = []
+config_courante = []
 
-
-#######################
-##Variables globales###
-#######################
-
-Liste=[]
-GRILLE = []
-
-#####################
-##Fonctions##########
-#####################
+#########################
+#Définition des fonctions
+#########################
 
 def carre_canvas(x,y,rayon=5,couleur='blue'):
     liste_canvas = canvas.create_rectangle(x-rayon,y-rayon,x+rayon,y+rayon,fill=couleur)
@@ -47,25 +51,29 @@ def generation():
             else:
                 carre_canvas(espacement / 2 + x * espacement, espacement / 2 + y*espacement,couleur='red')
 
-
-########################
-##Programme principal###
-########################
-
-
-racine =tk.Tk()
-
-racine.title("tas de sable")
-
-canvas = tk.Canvas(racine, bg="black", height=HAUTEUR, width=LARGEUR)
-canvas.grid()
-
-bouton1= tk.Button(racine, text="créer la config aléatoire", font = ("helvetica", "30"),command=generation)
-bouton1.grid()
+def programmerlecalculd():
+    for i in range(GRILLE):
+            config_courante[i].append(rd.int(3))
 
 
 
 
-racine.mainloop()
+
+####################
+#Programme principal
+####################
+
+root = tk.Tk()
+root.title('Tas de Sable - Groupe 1')
+canvas = tk.Canvas(root,height=HAUTEUR,width=LARGEUR,bg='black')
+button_generation = tk.Button(root,text='Génération',command=generation,activebackground='red')
+button_ajoutgrain= tk.Button(root,text ="rajout grain", command=programmerlecalculd)
+
+button_ajoutgrain.grid(row=0,column=2)
+button_generation.grid(row=0,column=0)
+canvas.grid(row=0,column=1)
 
 
+
+
+root.mainloop()
