@@ -32,7 +32,7 @@ def charger(widg):
 
 racine = tk.Tk()
 racine.title("image")
-bouton_1 = tk.Button(racine,text="charger image",commmand=lambda: charger(x))
+bouton_1 = tk.Button(racine,text="charger image",commmand=lambda: charger(racine))
 bouton_1.pack()
 
 racine.mainloop()

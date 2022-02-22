@@ -9,6 +9,7 @@ grille = 10
 liste_canvas = []
 
 
+
 def ma_commande(event):
     x = rd.randint(0,250)
     y = rd.randint(250,500)
@@ -37,7 +38,8 @@ def change_coleur(event):
 
 
 
-racine = tk.Tk()  
+racine = tk.Tk() 
+
 canvas=tk.Canvas(racine,height=H,width=L,bg='black')
 
 

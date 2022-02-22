@@ -2,26 +2,29 @@ import tkinter as tk
 
 HAUTEUR = 500
 LARGEUR = 500
-clic=0
-liste=[]
+nb_clic = 0
+point1=(-1,1)
 
 def clic_line(event):
-    x0 = event.x
-    liste.append(x0)
-    y0 = event.y
-    liste.append(y0)
-    
-    x1 = event.x
-    y1 =event.y
-    
-    
-    canvas.create_line(liste[1],y0,x1,y1,fill ="blue")
+    global point1, nb_clic
+    if nb_clic==0:
+       point1=(event.x,event.y)
+       nb_clic +=1
+    else:
+        point2 =(event.x,event.y)
+        nb_clic=0
+        canvas.create_line(point1[0],point1[1],point2[0],point2[1],fill ="blue")
 
     
 
 
+    
+    
+   
+   
+   
 
-    pass
+
 
 
 
