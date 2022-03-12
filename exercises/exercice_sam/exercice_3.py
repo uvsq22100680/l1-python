@@ -9,12 +9,11 @@ object=[]
 
 
 def rectangle(event): 
+    if  len(object) < 6:
+        
         if  166 <event.x < 360 :
-            canvas.create_rectangle(event.x,event.y, event.x+10,event.y+10,fill="green")
+                canvas.create_rectangle(event.x,event.y, event.x+10,event.y+10,fill="green")
 
-def rectanle_vert(event):
-    if  len(object) == 3:
-        rectangle(event)
 
 
 def creer_croix(event):
@@ -28,13 +27,17 @@ def creer_croix(event):
         y0 = event.y
         y1 = event.y
 
-        identifiant = canvas.create_line(x0,y0,x1+10,y1+10,fill = "blue",width = 2)
-        identifiant = canvas.create_line(x0,y0+10,x1+10,y1,fill="blue",width=2)
-        object.append(identifiant)
+        identifiant1 = canvas.create_line(x0,y0,x1+10,y1+10,fill = "blue",width = 2)
+        identifiant2 = canvas.create_line(x0,y0+10,x1+10,y1,fill="blue",width=2)
+        object.append(identifiant1)
+        object.append(identifiant2)
+       
 
 
 def efface_canvas():
-    canvas.delete(object)
+    canvas.delete("all")
+    canvas.create_line(LARGEUR/3,0,LARGEUR/3,HAUTEUR,fill ="white")
+    canvas.create_line((LARGEUR/3)*2,0,(LARGEUR/3)*2,HAUTEUR,fill ="white") 
 
 racine = tk.Tk()
 racine.title("exo3")
@@ -48,7 +51,7 @@ canvas.create_line(LARGEUR/3,0,LARGEUR/3,HAUTEUR,fill ="white")
 canvas.create_line((LARGEUR/3)*2,0,(LARGEUR/3)*2,HAUTEUR,fill ="white")
 
 canvas.bind("<Button-1>",creer_croix)
-canvas.bind("<Button-2>",rectanle_vert)
+canvas.bind("<Button-2>",rectangle)
 
 
 

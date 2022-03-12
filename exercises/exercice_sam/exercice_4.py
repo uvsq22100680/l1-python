@@ -3,18 +3,34 @@ import tkinter as tk
 
 
 
-HAUTEURS =500
+HAUTEURS = 500
 
-LARGEUR = 500
+LARGEUR =  500
 
-def modification_carre():
-     if x1-x0 >20:
-         canvas.itemconfig(nf)
+x0=150
+y0=200
+
+x1=200
+y1=300
+
+def modification_carre(event):
+    global x1,x0,y0,y1
+    if x0<event.x <x1 and y0 <event.y <y1 :
+        if x1-x0 >= 30:
+            canvas.coords(rectangle,x0,x1,y0-10,y1-10)
+
+    if x0>event.x >x1 and y0>event.y >y1 :
+        if x1-x0 >= 10:
+            canvas.coords(rectangle,x0,x1,y0+0,y1+10)
+
+    
+
+    
 
 
+         
 
 
-    pass
 
 
 def pause():
@@ -22,6 +38,7 @@ def pause():
 
 
 racine = tk.Tk()
+racine.title("exercice_4")
 
 canvas = tk.Canvas(racine, bg="white", height=HAUTEURS, width=LARGEUR)
 canvas.grid()
@@ -30,7 +47,7 @@ bouton_pause = tk.Button(racine, text = "pause",command = pause)
 bouton_pause.grid()
 
 
-canvas.create_rectangle(240,240,260,260,fill="red")
-
+rectangle = canvas.create_rectangle(x0,x1,y0,y1,fill="red")
+canvas.bind("<Button-1>",modification_carre)
 
 racine.mainloop()

@@ -37,6 +37,7 @@ def carre_canvas(x,y,rayon=5,couleur='blue'):
     liste_canvas = canvas.create_rectangle(x-rayon,y-rayon,x+rayon,y+rayon,fill=couleur)
 
 def generation():
+    global config_courante
     canvas.delete('all')
     config_courante = []
     for i in range(GRILLE):
@@ -52,8 +53,10 @@ def generation():
                 carre_canvas(espacement / 2 + x * espacement, espacement / 2 + y*espacement,couleur='red')
 
 def programmerlecalculd():
-    for i in range(GRILLE):
-            config_courante[i].append(rd.int(3))
+    global config_courante
+    for i in config_courante:
+        config_courante = [i+rd.randint(0,4)]
+
 
 
 
