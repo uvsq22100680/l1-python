@@ -55,7 +55,7 @@ def generation():
 def programmerlecalculd():
     global config_courante
     for i in config_courante:
-        config_courante = [i+rd.randint(0,4)]
+        config_courante.append[i+rd.randint(0,4)]
 
 
 
