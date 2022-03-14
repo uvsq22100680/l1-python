@@ -19,10 +19,8 @@ def modification_carre(event):
         if x1-x0 >= 30:
             canvas.coords(rectangle,x0,x1,y0-10,y1-10)
 
-    if x0>event.x >x1 and y0>event.y >y1 :
-        if x1-x0 >= 10:
-            canvas.coords(rectangle,x0,x1,y0+0,y1+10)
-
+    if 0<event.x<150 and 200<event.x<500:
+        canvas.coords(rectangle,x0,x1,y0+10,y1+10)
     
 
     

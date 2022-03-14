@@ -37,7 +37,7 @@ def mouvement_balle():
         ALPHA_VERTICALE += liste_balle[2]
         canvas.coords(balle,LARGEUR/2+ALPHA_HORIZONTALE,HAUTEUR/2+ALPHA_VERTICALE,LARGEUR/2+20+ALPHA_HORIZONTALE,HAUTEUR/2+20+ALPHA_VERTICALE)
         rebond1()
-    canvas.after(5,mouvement_balle)
+    canvas.after(1,mouvement_balle)
         
     if bouton_demarrer["text"]=="arreter":
          canvas.after_cancel(mouvement_balle)
