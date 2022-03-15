@@ -22,7 +22,7 @@ fenetre.title("test")
 canvas = tk.Canvas(fenetre,width=HAUTEUR,height=LARGEUR,bg="black")
 bouton_quitter = tk.Button(fenetre,text="quitter",command= lambda : fenetre.destroy())
 
-canvas.create_rectangle(HAUTEUR/2-50,LARGEUR/2-50,HAUTEUR/2+50,LARGEUR/2+50,fil="red")
+
 
 
 
@@ -37,5 +37,5 @@ bouton_quitter.grid()
 
 
 
-#lancement de la boucle
+#Lancement de la boucle
 fenetre.mainloop()

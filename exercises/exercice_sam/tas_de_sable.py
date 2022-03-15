@@ -51,12 +51,17 @@ def generation():
                 carre_canvas(espacement / 2 + x * espacement, espacement / 2 + y*espacement)
             else:
                 carre_canvas(espacement / 2 + x * espacement, espacement / 2 + y*espacement,couleur='red')
+    
+
+
 
 def programmerlecalculd():
     global config_courante
-    config_courante =[i +int(3) for i in config_courante]
-
-
+    for i in range(config_courante):
+        for j in range(config_courante):
+            config_courante[i].append(3)
+   
+   
 
 
 

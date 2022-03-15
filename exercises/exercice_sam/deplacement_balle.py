@@ -11,12 +11,13 @@ import random as rd
 #constante
 LARGEUR =600
 HAUTEUR=400
-ALPHA_HORIZONTALE=0
-ALPHA_VERTICALE=0
 A = 0
+
+
 #variable
 liste_balle=[]
-
+ALPHA_HORIZONTALE=0
+ALPHA_VERTICALE=0
 
 #fonctions
 
@@ -37,7 +38,7 @@ def mouvement_balle():
         ALPHA_VERTICALE += liste_balle[2]
         canvas.coords(balle,LARGEUR/2+ALPHA_HORIZONTALE,HAUTEUR/2+ALPHA_VERTICALE,LARGEUR/2+20+ALPHA_HORIZONTALE,HAUTEUR/2+20+ALPHA_VERTICALE)
         rebond1()
-    canvas.after(1,mouvement_balle)
+    canvas.after(5,mouvement_balle)
         
     if bouton_demarrer["text"]=="arreter":
          canvas.after_cancel(mouvement_balle)
@@ -67,7 +68,7 @@ fenetre.title("deplacement balle")
 #widgets
 canvas = tk.Canvas(fenetre, width=LARGEUR, height=HAUTEUR,bg = "black")
 bouton_demarrer = tk.Button(fenetre, text = "démarrer", font=("helvetica","20"),command=mouvement_balle)
-bouton_quitter =tk.Button(fenetre,text="quiiter",font=("helvetica","20"),command= lambda : fenetre.destroy())
+bouton_quitter =tk.Button(fenetre,text="quitter",font=("helvetica","20"),command= lambda : fenetre.destroy())
 
 
 

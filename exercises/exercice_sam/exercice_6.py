@@ -10,15 +10,18 @@ HAUTEUR=500
 def clic(event):
     if 0<event.x<25 and 0<event.y<50 :
         canvas.itemconfig(cercle,fil='green')
-    if 25<event.x<50 and 0<event.y<50:
+    elif 25<event.x<50 and 0<event.y<50:
         canvas.itemconfig(cercle,fil='yellow')
     
-    if 50<event.x<100 and 0<event.y<50:
+    elif 50<event.x<100 and 0<event.y<50:
         canvas.itemconfig(cercle,fil='blue') 
+
+    else:
+        canvas.itemconfig(cercle,fil="black")
     
 
 def annuler():
-     pass  
+     pass
 
    
     
@@ -30,6 +33,7 @@ bouton_quitter = tk.Button(fenetre,text="quitter",command = lambda : fenetre.des
 canvas.grid(row=0,column=1)
 bouton_annuler.grid(row=0,column=0)
 bouton_quitter.grid()
+
 
 canvas.create_rectangle(0,0,50,50,fil="green")
 canvas.create_rectangle(25,0,75,50,fil="yellow")
