@@ -1,4 +1,5 @@
 import tkinter as tk
+import random as rd
 import PIL as pil
 from PIL import Image
 from PIL import ImageTk 
@@ -125,8 +126,75 @@ def noirBlanc():
     modify(mat)
 
 create=True
-#Fonctions auxiliaires 
 
+def zoom():
+    mat=loading(nomImgCourante)
+    out =[]
+    #créer une matrice de largeur et hauteur deux fois plus grande 
+    for i in range(nbrLig(mat)):
+        l =[]
+        for j in range(nbrCol(mat)):
+           l.append(mat[i][j])
+           l.append(mat[i][j])
+        out.append(l)
+        out.append(l)
+    mat = out
+
+
+    modify(mat)
+
+def shrink():
+    mat=loading(nomImgCourante)
+    #créer une matrice de largeur et hauteur deux fois plus petite 
+    out = []
+    for i in range(nbrLig(mat)):
+        if i % 2 == 1 :
+            continue
+        l = []
+        for j in range(nbrCol(mat)):
+            if j % 2 == 0 :
+                try :
+                    r = int((mat[i][j][0] + mat[i][j+1][0] + mat[i+1][j][0] + mat[i+1][j+1][0]) / 4)
+                    g = int((mat[i][j][1] + mat[i][j+1][1] + mat[i+1][j][1] + mat[i+1][j+1][1]) / 4)
+                    b = int((mat[i][j][2] + mat[i][j+1][2] + mat[i+1][j][2] + mat[i+1][j+1][2]) / 4)
+                    l.append((r, g, b, 255))
+                except :
+                    pass
+        out.append(l)
+    mat = out
+    modify(mat)
+
+
+
+def rotate():
+    
+    mat=loading(nomImgCourante)
+    out =[]
+    for i in range(nbrCol(mat)):
+        l = []
+        for j in range(nbrLig(mat)):
+            l.append(mat[j][i])
+        l.reverse()
+        out.append(l)
+    mat = out
+    modify(mat)
+
+
+def dithering():
+    mat=loading(nomImgCourante)
+    random = rd.randint(0, 255)
+    for i in range(nbrLig(mat)):
+        for j in range(nbrCol(mat)):
+            l = luminosite(mat[i][j][0], mat[i][j][1], mat[i][j][2])
+            if l > random :
+                mat[i][j] = (255, 255, 255, 255)
+            else :
+                mat[i][j] = (0, 0, 0, 255)
+    modify(mat)
+
+
+
+#Fonctions auxiliaires 
 fenetre = tk.Tk()
 fenetre.title("mon petit photoshop")
 
@@ -141,11 +209,15 @@ bouton_symetrique = tk.Button(fenetre,text="symetrique",command = symetrique)
 
 bouton_gris = tk.Button(fenetre,text="gris",command=gris)
 bouton_noirblanc = tk.Button(fenetre,text="noirblanc",command=noirBlanc)
+bouton_zoom=tk.Button(fenetre,text="zoom",command=zoom)
+bouton_shrink=tk.Button(fenetre,text="shrink",command=shrink)
+bouton_rotate=tk.Button(fenetre,text="rotate",command=rotate)
+bouton_dithering=tk.Button(fenetre,text="dithering",command=dithering)
 
 #Positionnement des Widgets
 bouton_charger.grid(row=4,column=0)
-bouton_reaffiche.grid(row=4,column=2)
-bouton_quitter.grid(row=4,column=1)
+bouton_reaffiche.grid(row=4,column=1)
+bouton_quitter.grid(row=4,column=2)
 
 bouton_filtrevert.grid(row=5,column=0)
 bouton_negatif.grid(row=5,column=1)
@@ -154,5 +226,9 @@ bouton_symetrique.grid(row=5,column=2)
 bouton_gris.grid(row=6,column=0)
 bouton_noirblanc.grid(row=6,column=1)
 
+bouton_zoom.grid(row=6,column=2)
+bouton_shrink.grid(row =7,column=0)
+bouton_rotate.grid(row =7,column=1)
+bouton_dithering.grid(row =7,column=2)
 #Lancement de la boucle 
 fenetre.mainloop()

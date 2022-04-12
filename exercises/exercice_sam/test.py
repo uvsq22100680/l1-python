@@ -1,6 +1,2 @@
-l=[1,2]
-l.append(1)
-print(l)
-
-a = 1+3
-print(a)
+liste=[[1,2,3,4],[1,2]]
+print(liste[1][1])
